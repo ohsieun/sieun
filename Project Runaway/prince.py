@@ -26,7 +26,7 @@ class Prince:
         self.state = self.RIGHT_STAND
         if Prince.image == None:
 #            Prince.image = load_image('prince_animation.png')
-            Prince.image = load_image('prince.png')
+            Prince.image = load_image('prince_1.png')
 
 
     def update(self, frame_time):

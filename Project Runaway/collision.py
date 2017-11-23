@@ -2,14 +2,15 @@ from pico2d import *
 
 import game_framework
 
-
 from prince import Prince # import Prince class from prince.py
 
 from sky import Sky
-from icon_pause import Icon_pause
 from grass import Grass
+
+from icon_pause import Icon_pause
 from icon_planet import Icon_planet
 from blood_gage import Blood_gage
+
 from tree import Tree
 
 
