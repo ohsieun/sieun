@@ -14,6 +14,10 @@ from blood_gage import Blood_gage
 from tree import Tree
 from tree2 import Tree2
 
+from dirty_water import Dirty_water
+
+from item_barrier import Item_barrier
+from item_booster import Item_booster
 
 name = "collision"
 
@@ -28,9 +32,12 @@ trees = None
 trees2 = None
 sky = None
 big_balls_for_collision_check = None
+dirty_waters = None
+item_barriers = None
+item_boosters = None
 
 def create_world():
-    global prince, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2
+    global prince, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2, dirty_waters, item_barriers, item_boosters
     prince = Prince()
     icon_pause = Icon_pause()
     icon_planet = Icon_planet()
@@ -38,6 +45,10 @@ def create_world():
 #    tree = Tree()
     trees = [Tree() for i in range(5)]
     trees2 = [Tree2() for i in range(5)]
+    dirty_waters = [Dirty_water() for i in range (2)]
+    item_barriers = [Item_barrier() for i in range (3)]
+    item_boosters = [Item_booster() for i in range (3)]
+
 
 #    big_balls = [BigBall() for i in range(10)]
 
@@ -51,7 +62,7 @@ def create_world():
 
 
 def destroy_world():
-    global prince, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2
+    global prince, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2, dirty_waters,item_barriers, item_boosters
 
     del(prince)
     del(icon_pause)
@@ -61,6 +72,9 @@ def destroy_world():
 #    del(tree)
     del(trees)
     del(trees2)
+    del(dirty_waters)
+    del(item_barriers)
+    del(item_boosters)
 
     del(grass)
     del(big_balls)
@@ -119,6 +133,16 @@ def update(frame_time):
     for tree2 in trees2:
         tree2.update(frame_time)
 
+    for dirty_water in dirty_waters:
+        dirty_water.update(frame_time)
+
+    for item_booster in item_boosters:
+        item_booster.update(frame_time)
+
+    for item_barrier in item_barriers:
+        item_barrier.update(frame_time)
+
+
     prince.update(frame_time)
 
 #    for ball in balls:
@@ -153,6 +177,14 @@ def draw(frame_time):
     for tree2 in trees2:
         tree2.draw()
 
+    for dirty_water in dirty_waters:
+        dirty_water.draw()
+
+    for item_barrier in item_barriers:
+        item_barrier.draw()
+
+    for item_booster in item_boosters:
+        item_booster.draw()
     prince.draw()
 #    for ball in balls:
 #        ball.draw()
