@@ -45,7 +45,7 @@ class Prince:
         self.frame = int(self.total_frames) % 2
 #        self.handle_state[self.state](self)
 
-        self.x += (self.dir * distance)/2
+        self.x += (self.dir * distance)*(2/3)
 
         self.x = clamp(0, self.x, 800)
 

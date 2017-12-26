@@ -2,6 +2,8 @@ from pico2d import *
 
 import game_framework
 
+import title_state
+
 
 from prince import Prince # import Prince class from prince.py
 
@@ -113,8 +115,8 @@ def handle_events(frame_time):
         if event.type == SDL_QUIT:
             game_framework.quit()
         else:
-#            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-#                game_framework.quit()
+            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+               game_framework.quit()
             if event.type == SDL_MOUSEMOTION:
                 x, y = event.x, 600 - event.y
 
@@ -171,6 +173,15 @@ def update(frame_time):
 
 #    delay(1.0)
 
+    for item_booster in item_boosters:
+        if collide(prince, item_booster):
+            item_boosters.remove(item_booster)
+
+    for item_barrier in item_barriers:
+        if collide(prince, item_barrier):
+            item_barriers.remove(item_barrier)
+
+
 
 def draw(frame_time):
     clear_canvas()
@@ -202,9 +213,12 @@ def draw(frame_time):
 #    for ball in balls:
 #        ball.draw()
 
-#    grass.draw_bb()
-#    tree.draw_bb()
-#    prince.draw_bb()
+    grass.draw_bb()
+    tree.draw_bb()
+    tree2.draw_bb()
+    prince.draw_bb()
+#    item_booster.draw_bb()
+
 #    for ball in balls:
 #        ball.draw_bb()
 
