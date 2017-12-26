@@ -1,0 +1,10 @@
+Wed Dec 13 00:04:20 2017 +0900 moving water and items
+Tue Dec 12 23:26:36 2017 +0900 add sources
+Mon Nov 27 12:05:51 2017 +0900 moving trees
+Fri Nov 24 00:10:31 2017 +0900 add resources
+Thu Nov 23 18:25:45 2017 +0900 Merge branch 'master' of https://github.com/ohsieun/sieun
+Thu Nov 23 18:21:30 2017 +0900 resouce fix and add
+Tue Nov 21 23:55:48 2017 +0900 2차 ppt
+Tue Nov 21 23:54:06 2017 +0900 ppt 2차
+Tue Nov 21 23:53:21 2017 +0900 +ppt
+Tue Nov 21 22:53:53 2017 +0900 리소스 제작 및 화면에 구현, 캐릭터 좌우 조작, 충돌 박스

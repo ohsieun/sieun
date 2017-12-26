@@ -107,8 +107,12 @@ def handle_events(frame_time):
         if event.type == SDL_QUIT:
             game_framework.quit()
         else:
-            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-                game_framework.quit()
+#            if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+#                game_framework.quit()
+            if event.type == SDL_MOUSEMOTION:
+                x, y = event.x, 600 - event.y
+
+#                if x >
             else:
                 prince.handle_event(event)
 

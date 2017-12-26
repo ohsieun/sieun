@@ -63,6 +63,16 @@ class Prince:
             if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.LEFT_RUN):
                 self.state = self.RIGHT_RUN
                 self.dir = 1
+#        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
+#            if self.state in (self.UP_STAND, self.RIGHT_RUN, self.LEFT_RUN):
+#                self.state = self.UP_RUN
+#                self.dir =
+
+#        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+#            if self.state in ():
+#                self.state =
+#                self.dir =
+
         elif (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
             if self.state in (self.LEFT_RUN,):
                 self.state = self.LEFT_STAND
