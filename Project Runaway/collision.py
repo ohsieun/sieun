@@ -176,12 +176,25 @@ def update(frame_time):
     for item_booster in item_boosters:
         if collide(prince, item_booster):
             item_boosters.remove(item_booster)
+            prince.eat(item_booster)
 
     for item_barrier in item_barriers:
         if collide(prince, item_barrier):
             item_barriers.remove(item_barrier)
+            prince.eat(item_barrier)
+
+    for dirty_water in dirty_waters:
+        if collide(prince, dirty_water):
+            dirty_waters.remove(dirty_water)
+            prince.hurt(dirty_water)
 
 
+    if collide(prince, tree):
+        prince.hurt(tree)
+
+
+    if collide(prince, tree2):
+        prince.hurt(tree2)
 
 def draw(frame_time):
     clear_canvas()
@@ -217,7 +230,12 @@ def draw(frame_time):
     tree.draw_bb()
     tree2.draw_bb()
     prince.draw_bb()
-#    item_booster.draw_bb()
+
+    for item_booster in item_boosters:
+        item_booster.draw_bb()
+
+    for item_barrier in item_barriers:
+        item_barrier.draw_bb()
 
 #    for ball in balls:
 #        ball.draw_bb()

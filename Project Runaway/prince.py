@@ -14,6 +14,8 @@ class Prince:
     FRAMES_PER_ACTION = 2
 
     image = None
+    eat_sound = None
+    hurt_sound = None
 
     LEFT, RIGHT, UP, DOWN = 1, 0, 2, 3
 
@@ -32,7 +34,18 @@ class Prince:
 
         if Prince.image == None:
             Prince.image = load_image('prince_7.png')
+        if Prince.eat_sound == None:
+            Prince.eat_sound = load_wav('effect_eat.wav')
+            Prince.eat_sound.set_volume(32)
+        if Prince.hurt_sound == None:
+            Prince.hurt_sound = load_wav('effect_crack.wav')
+            Prince.hurt_sound.set_volume(32)
 
+    def eat(self, item):
+        self.eat_sound.play()
+
+    def hurt(self, monster):
+        self.hurt_sound.play()
 
     def update(self, frame_time):
         def clamp(minimum, x, maximum):

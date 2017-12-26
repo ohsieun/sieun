@@ -1,17 +1,21 @@
 import game_framework
 import collision
+
 from pico2d import *
 
 name = "TitleState"
-image = None
+image1 = None
+image2 = None
 
 def enter():
-    global image
-    image = load_image('title_1.png')
+    global image1, image2
+    image1 = load_image('title_1.png')
+    image2 = load_image('title_2.png')
 
 def exit():
-    global image
-    del(image)
+    global image1,image2
+    del(image1)
+    del(image2)
 
 
 def handle_events(frame_time):
@@ -26,13 +30,13 @@ def handle_events(frame_time):
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
                 game_framework.change_state(collision)
 def draw(frame_time):
+    global image
     clear_canvas()
-    image.draw(400, 300)
+    image1.draw(400, 300)
+    image2.draw(400,100)
     update_canvas()
 
 def update(frame_time):
-   # if not running:
-   #   game_framework.quit()       # start_state의 resume 수행..?
     pass
 
 

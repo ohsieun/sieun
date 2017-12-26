@@ -23,7 +23,7 @@ class Item_barrier:
     # fill here
 
     def get_bb(self):
-        return self.x - 60, self.y - 80, self.x + 60, self.y + 80
+        return self.x - 35, self.y - 35, self.x + 35, self.y + 35
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
