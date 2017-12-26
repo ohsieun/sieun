@@ -11,11 +11,14 @@ class Prince:
 
     TIME_PER_ACTION = 0.5
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
-    FRAMES_PER_ACTION = 8
+    FRAMES_PER_ACTION = 2
 
     image = None
 
-    LEFT_RUN, RIGHT_RUN, LEFT_STAND, RIGHT_STAND = 0, 1, 2, 3
+    LEFT, RIGHT, UP, DOWN = 1, 0, 2, 3
+
+    state_check = 0
+
 
     def __init__(self):
         self.x, self.y = 20, 90
@@ -23,11 +26,12 @@ class Prince:
         self.frame = 0
         self.life_time = 0.0
         self.total_frames = 0.0
-        self.dir = 0
-        self.state = self.RIGHT_STAND
+        self.dir = 1
+        self.state = self.RIGHT
+        self.state_check = 0
+
         if Prince.image == None:
-#            Prince.image = load_image('prince_animation_small.png')
-            Prince.image = load_image('prince_6_1.png')
+            Prince.image = load_image('prince_7.png')
 
 
     def update(self, frame_time):
@@ -36,28 +40,25 @@ class Prince:
 
         self.life_time += frame_time
         distance = Prince.RUN_SPEED_PPS * frame_time
-##        self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time
         self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time / 2
 
         self.frame = int(self.total_frames) % 2
 #        self.handle_state[self.state](self)
 
-##        self.frame = (self.frame + 1) % 5
-        self.x += (self.dir * distance)
+        self.x += (self.dir * distance)/2
 
         self.x = clamp(0, self.x, 800)
-#        self.frame = (self.frame+1) % 2
-#        self.x += 5
+
+
+        if self.state == self.UP:
+            self.y = min(180, self.y + 90)
+        elif self.state == self.DOWN:
+#            self.y = max(0, self.y - 5)
+            self.y = 90
 
     def draw(self):
     #    self.image.clip_draw(0,0,60,80,self.x,self.y)
-         self.image.clip_draw(self.frame * 100, 0, 100, 112, self.x, self.y)
-
-    #        self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
-
-    #     self.image.clip_draw(self.frame * 100, self.state * 300, 100, 100, self.x, self.y)
-    #        self.image.clip_draw(self.frame * 50, self.state * 50, 100, 100, self.x, self.y)
-               #   clip_draw(left, bottom, width, height, x, y)
+         self.image.clip_draw(self.frame * 100, (self.state % 5) * 112, 100, 112, self.x, self.y)
 
     def get_bb(self):       #bb - bounding box
         return self.x - 20, self.y - 40, self.x + 20, self.y + 40
@@ -67,33 +68,28 @@ class Prince:
 
     def handle_event(self, event):
         if (event.type, event.key) == (SDL_KEYDOWN, SDLK_LEFT):
-            if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.RIGHT_RUN):
-                self.state = self.LEFT_RUN
+            if self.state in (self.LEFT, self.RIGHT,self.DOWN, self.UP):
+                self.state = self.LEFT
                 self.dir = -1
+                self.state_check = 0
+
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_RIGHT):
-            if self.state in (self.RIGHT_STAND, self.LEFT_STAND, self.LEFT_RUN):
-                self.state = self.RIGHT_RUN
+            if self.state in (self.LEFT, self.RIGHT, self.DOWN, self.UP):
+                self.state = self.RIGHT
                 self.dir = 1
-#        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
-#            if self.state in (self.UP_STAND, self.RIGHT_RUN, self.LEFT_RUN):
-#                self.state = self.UP_RUN
-#                self.dir =
+                self.state_check = 1
 
-#        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
-#            if self.state in ():
-#                self.state =
-#                self.dir =
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_UP):
+            if self.state in (self.RIGHT, self.LEFT, self.DOWN, self.UP):
+                self.state = self.UP
+                self.dir = 1
+                self.state_check = 2
 
-        elif (event.type, event.key) == (SDL_KEYUP, SDLK_LEFT):
-            if self.state in (self.LEFT_RUN,):
-                self.state = self.LEFT_STAND
-                self.dir = 0
-        elif (event.type, event.key) == (SDL_KEYUP, SDLK_RIGHT):
-            if self.state in (self.RIGHT_RUN,):
-                self.state = self.RIGHT_STAND
-                self.dir = 0
-
-
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_DOWN):
+            if self.state in (self.RIGHT, self.LEFT, self.UP):
+                self.state = self.DOWN
+                self.dir = 1
+                self.state_check = 3
 
 
 
