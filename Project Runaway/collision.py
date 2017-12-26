@@ -7,6 +7,8 @@ import title_state
 
 from prince import Prince # import Prince class from prince.py
 
+from rose import Rose
+
 from sky import Sky
 from grass import Grass
 
@@ -24,7 +26,7 @@ from item_booster import Item_booster
 
 name = "collision"
 
-
+rose = None
 prince = None
 grass = None
 icon_pause = None
@@ -43,8 +45,9 @@ item_barriers = None
 item_boosters = None
 
 def create_world():
-    global prince, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, tree, tree2, trees, trees2, dirty_waters, item_barriers, item_boosters
+    global prince,rose, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, tree, tree2, trees, trees2, dirty_waters, item_barriers, item_boosters
     prince = Prince()
+    rose = Rose()
     icon_pause = Icon_pause()
     icon_planet = Icon_planet()
     blood_gage = Blood_gage()
@@ -72,6 +75,7 @@ def destroy_world():
     global prince, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, tree2, trees2, dirty_waters,item_barriers, item_boosters
 
     del(prince)
+    del(rose)
     del(icon_pause)
     del(icon_planet)
     del(blood_gage)
@@ -158,7 +162,7 @@ def update(frame_time):
 
 
     prince.update(frame_time)
-
+    rose.update(frame_time)
 #    for ball in balls:
 #        ball.update(frame_time)
 
@@ -185,7 +189,6 @@ def update(frame_time):
 
     for dirty_water in dirty_waters:
         if collide(prince, dirty_water):
-            dirty_waters.remove(dirty_water)
             prince.hurt(dirty_water)
 
 
@@ -223,21 +226,22 @@ def draw(frame_time):
     for item_booster in item_boosters:
         item_booster.draw()
 
+    rose.draw()
     prince.draw()
 
-    grass.draw_bb()
-    tree.draw_bb()
-    tree2.draw_bb()
-    prince.draw_bb()
+#    grass.draw_bb()
+#    tree.draw_bb()
+#    tree2.draw_bb()
+#    prince.draw_bb()
 
-    for item_booster in item_boosters:
-        item_booster.draw_bb()
+#    for item_booster in item_boosters:
+#        item_booster.draw_bb()
 
-    for item_barrier in item_barriers:
-        item_barrier.draw_bb()
+#    for item_barrier in item_barriers:
+#        item_barrier.draw_bb()
 
-    for dirty_water in dirty_waters:
-        dirty_water.draw_bb()
+ #   for dirty_water in dirty_waters:
+ #       dirty_water.draw_bb()
 
     update_canvas()
 

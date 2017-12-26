@@ -8,6 +8,7 @@ class Blood_gage:
 
     def __init__(self):
         self.image = load_image('blood_gage_full_ex.png')
+
         if Blood_gage.font == None:
             Blood_gage.font = load_font('ENCR10B.TTF', 16)
 
