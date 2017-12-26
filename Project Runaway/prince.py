@@ -25,8 +25,8 @@ class Prince:
         self.dir = 0
         self.state = self.RIGHT_STAND
         if Prince.image == None:
-#            Prince.image = load_image('prince_animation.png')
-            Prince.image = load_image('prince_1.png')
+#            Prince.image = load_image('prince_animation_small.png')
+            Prince.image = load_image('prince_3_1.png')
 
 
     def update(self, frame_time):
@@ -37,6 +37,7 @@ class Prince:
         distance = Prince.RUN_SPEED_PPS * frame_time
         self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time
         self.frame = int(self.total_frames) % 5
+#        self.frame = (self.frame + 1) % 5
         self.x += (self.dir * distance)
 
         self.x = clamp(0, self.x, 800)
@@ -44,6 +45,8 @@ class Prince:
 
     def draw(self):
         self.image.clip_draw(0,0,60,80,self.x,self.y)
+    #    self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
+
     #     self.image.clip_draw(self.frame * 100, self.state * 300, 100, 100, self.x, self.y)
     #        self.image.clip_draw(self.frame * 50, self.state * 50, 100, 100, self.x, self.y)
                #   clip_draw(left, bottom, width, height, x, y)
