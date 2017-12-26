@@ -3,6 +3,7 @@ import random
 from pico2d import *
 
 class Prince:
+
     PIXEL_PER_METER = (10.0 / 0.3)           # 10 pixel 30 cm
     RUN_SPEED_KMPH = 20.0                    # Km / Hour
     RUN_SPEED_MPM = (RUN_SPEED_KMPH * 1000.0 / 60.0)
@@ -12,6 +13,8 @@ class Prince:
     TIME_PER_ACTION = 0.5
     ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
     FRAMES_PER_ACTION = 2
+
+
 
     image = None
     eat_sound = None
@@ -41,6 +44,7 @@ class Prince:
             Prince.hurt_sound = load_wav('effect_crack.wav')
             Prince.hurt_sound.set_volume(32)
 
+
     def eat(self, item):
         self.eat_sound.play()
 
@@ -69,9 +73,12 @@ class Prince:
 #            self.y = max(0, self.y - 5)
             self.y = 90
 
+
     def draw(self):
     #    self.image.clip_draw(0,0,60,80,self.x,self.y)
          self.image.clip_draw(self.frame * 100, (self.state % 5) * 112, 100, 112, self.x, self.y)
+
+
 
     def get_bb(self):       #bb - bounding box
         if self.state in (self.LEFT, self.RIGHT):

@@ -222,9 +222,8 @@ def draw(frame_time):
 
     for item_booster in item_boosters:
         item_booster.draw()
+
     prince.draw()
-#    for ball in balls:
-#        ball.draw()
 
     grass.draw_bb()
     tree.draw_bb()
@@ -237,8 +236,8 @@ def draw(frame_time):
     for item_barrier in item_barriers:
         item_barrier.draw_bb()
 
-#    for ball in balls:
-#        ball.draw_bb()
+    for dirty_water in dirty_waters:
+        dirty_water.draw_bb()
 
     update_canvas()
 

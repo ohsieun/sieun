@@ -23,7 +23,7 @@ class Dirty_water:
     # fill here
 
     def get_bb(self):
-        return self.x - 60, self.y - 80, self.x + 60, self.y + 80
+        return self.x - 70, self.y - 30, self.x + 70, self.y + 30
 
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
