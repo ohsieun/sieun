@@ -7,6 +7,7 @@ else:
     os.environ["PYSDL2_DLL_PATH"] = "./SDL2/x64"
 
 import game_framework
+
 import collision
 
 game_framework.run(collision)

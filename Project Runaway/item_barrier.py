@@ -7,7 +7,7 @@ class Item_barrier:
         self.image = load_image('item_barrier.png')
 #        self.x, self.y = 800, 100
         self.x, self.y = random.randint(800, 3200), 70
-        self.move_speed = 40
+        self.move_speed = 50
         self.dir = -1
 
     def update(self,frame_time):

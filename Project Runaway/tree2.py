@@ -6,8 +6,9 @@ class Tree2:
     def __init__(self):
         self.image = load_image('tree_2.png')
 #        self.x, self.y = 800, 100
-        self.x, self.y = random.randint(900, 4000), 100
-        self.move_speed = random.randint(30, 100)
+        self.x, self.y = random.randint(1100, 1500), 40
+#        self.move_speed = random.randint(30, 100)
+        self.move_speed = 35
         self.dir = -1
 
     def update(self,frame_time):
@@ -15,8 +16,8 @@ class Tree2:
 #        self.frame = self.frame
         self.x -= frame_time * self.move_speed
 
-#        if self.x < 0:
-#            self.x = 800
+        if self.x < -40:
+            self.x = 850
 
     def draw(self):
         self.image.draw(self.x, self.y)

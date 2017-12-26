@@ -2,6 +2,7 @@ from pico2d import *
 
 import game_framework
 
+
 from prince import Prince # import Prince class from prince.py
 
 from sky import Sky
@@ -27,7 +28,10 @@ grass = None
 icon_pause = None
 icon_planet = None
 blood_gage = None
-#tree = None
+
+tree = None
+tree2 = None
+
 trees = None
 trees2 = None
 sky = None
@@ -37,14 +41,15 @@ item_barriers = None
 item_boosters = None
 
 def create_world():
-    global prince, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2, dirty_waters, item_barriers, item_boosters
+    global prince, sky, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, tree, tree2, trees, trees2, dirty_waters, item_barriers, item_boosters
     prince = Prince()
     icon_pause = Icon_pause()
     icon_planet = Icon_planet()
     blood_gage = Blood_gage()
-#    tree = Tree()
-    trees = [Tree() for i in range(5)]
-    trees2 = [Tree2() for i in range(5)]
+    tree = Tree()
+    tree2 = Tree2()
+#    trees = [Tree() for i in range(5)]
+#    trees2 = [Tree2() for i in range(5)]
     dirty_waters = [Dirty_water() for i in range (2)]
     item_barriers = [Item_barrier() for i in range (3)]
     item_boosters = [Item_booster() for i in range (3)]
@@ -62,16 +67,17 @@ def create_world():
 
 
 def destroy_world():
-    global prince, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, trees2, dirty_waters,item_barriers, item_boosters
+    global prince, grass, balls, big_balls, icon_pause, icon_planet, blood_gage, trees, tree2, trees2, dirty_waters,item_barriers, item_boosters
 
     del(prince)
     del(icon_pause)
     del(icon_planet)
     del(blood_gage)
 
-#    del(tree)
-    del(trees)
-    del(trees2)
+    del(tree)
+    del(tree2)
+#    del(trees)
+#    del(trees2)
     del(dirty_waters)
     del(item_barriers)
     del(item_boosters)
@@ -131,11 +137,13 @@ def collide(a, b):          # a와 b는 객체. 무엇이든 상관 ㄴ
 
 def update(frame_time):
 
-    for tree in trees:
-        tree.update(frame_time)
+    tree.update(frame_time)
+    tree2.update(frame_time)
+#    for tree in trees:
+#        tree.update(frame_time)
 
-    for tree2 in trees2:
-        tree2.update(frame_time)
+#    for tree2 in trees2:
+#        tree2.update(frame_time)
 
     for dirty_water in dirty_waters:
         dirty_water.update(frame_time)
@@ -173,13 +181,14 @@ def draw(frame_time):
     blood_gage.draw()
 
     grass.draw()
-#    tree.draw()
 
-    for tree in trees:
-        tree.draw()
+    tree.draw()
+    tree2.draw()
+#    for tree in trees:
+#        tree.draw()
 
-    for tree2 in trees2:
-        tree2.draw()
+#    for tree2 in trees2:
+#        tree2.draw()
 
     for dirty_water in dirty_waters:
         dirty_water.draw()
