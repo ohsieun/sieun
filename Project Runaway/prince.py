@@ -74,8 +74,10 @@ class Prince:
          self.image.clip_draw(self.frame * 100, (self.state % 5) * 112, 100, 112, self.x, self.y)
 
     def get_bb(self):       #bb - bounding box
-        return self.x - 20, self.y - 40, self.x + 20, self.y + 40
-
+        if self.state in (self.LEFT, self.RIGHT):
+            return self.x - 30, self.y - 50, self.x + 30, self.y + 50
+        elif self.state in (self.UP, self.DOWN):
+            return self.x - 40, self.y - 40, self.x + 40, self.y + 20
     def draw_bb(self):
         draw_rectangle(*self.get_bb())
 
