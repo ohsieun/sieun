@@ -26,7 +26,7 @@ class Prince:
         self.state = self.RIGHT_STAND
         if Prince.image == None:
 #            Prince.image = load_image('prince_animation_small.png')
-            Prince.image = load_image('prince_3_1.png')
+            Prince.image = load_image('prince_5.png')
 
 
     def update(self, frame_time):
@@ -35,8 +35,12 @@ class Prince:
 
         self.life_time += frame_time
         distance = Prince.RUN_SPEED_PPS * frame_time
-        self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time
-        self.frame = int(self.total_frames) % 5
+#        self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time
+        self.total_frames += Prince.FRAMES_PER_ACTION * Prince.ACTION_PER_TIME * frame_time / 2
+
+        self.frame = int(self.total_frames) % 2
+#        self.handle_state[self.state](self)
+
 #        self.frame = (self.frame + 1) % 5
         self.x += (self.dir * distance)
 
@@ -44,8 +48,10 @@ class Prince:
 
 
     def draw(self):
-        self.image.clip_draw(0,0,60,80,self.x,self.y)
-    #    self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
+    #    self.image.clip_draw(0,0,60,80,self.x,self.y)
+         self.image.clip_draw(self.frame * 100, 0, 100, 112, self.x, self.y)
+
+    #        self.image.clip_draw(self.frame * 100, self.state * 100, 100, 100, self.x, self.y)
 
     #     self.image.clip_draw(self.frame * 100, self.state * 300, 100, 100, self.x, self.y)
     #        self.image.clip_draw(self.frame * 50, self.state * 50, 100, 100, self.x, self.y)
